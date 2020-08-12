@@ -12,9 +12,7 @@ export class DonaComponent implements OnInit {
 
   @Input() titulo = 'Sin título';
   @Input('labels') doughnutChartLabels: Label[] = ['Label1', 'Label2', 'Label3'];
-  @Input('data') doughnutChartData: MultiDataSet = [
-    [350, 450, 100]
-  ];
+  @Input('data') doughnutChartData: MultiDataSet = [ [350, 450, 100] ];
 
   public colors: Color[] = [
     { backgroundColor: ['green', 'blue', 'purple']}
