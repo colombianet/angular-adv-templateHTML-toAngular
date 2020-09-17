@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 // Módulo Rutas Hijas
-import { PagesRoutingModule } from './pages/pages-routing.module';
+import { PagesRoutingModule } from './pages/pages.routing';
 
 import { NopagesfoundComponent } from './nopagesfound/nopagesfound.component';
 
