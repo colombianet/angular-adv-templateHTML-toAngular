@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Módulos
 import { SharedModule } from '../shared/shared.module';
@@ -12,6 +13,7 @@ import { PagesComponent } from './pages.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountsSettingsComponent } from './accounts-settings/accounts-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -25,7 +27,8 @@ import { PromesasComponent } from './promesas/promesas.component';
     PagesComponent,
     ProgressComponent,
     AccountsSettingsComponent,
-    PromesasComponent
+    PromesasComponent,
+    ProfileComponent
   ],
   exports: [
     Graficas1Component,
@@ -38,7 +41,9 @@ import { PromesasComponent } from './promesas/promesas.component';
     CommonModule,
     SharedModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PagesModule { }
