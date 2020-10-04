@@ -1,12 +1,15 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { tap, map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
+import { Observable, of } from 'rxjs';
+import { tap, map, catchError } from 'rxjs/operators';
+
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
+import { GetUsuarios } from '../interfaces/get-usuarios.interface';
+
 import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
@@ -26,6 +29,14 @@ export class UsuarioService {
 
   get token(): string {
     return localStorage.getItem('token') || '';
+  }
+
+  get headers(): object {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    };
   }
 
   get uid(): string {
@@ -56,11 +67,8 @@ export class UsuarioService {
 
   validarToken(): Observable<boolean> {
 
-    return this.http.get(`${ base_url }/login/renew`, {
-      headers: {
-        'x-token': this.token
-      }
-    }).pipe(
+    return this.http.get(`${ base_url }/login/renew`, this.headers )
+      .pipe(
       // Esto regresa observable, hay usuarios q no tienen imagen => a esos asigno '' por validacion en modelo ('imagenurl')
       // 1.- Guardo en LS
       // 2.- transformo en boolean para q el guard haga su trabajo
@@ -80,6 +88,25 @@ export class UsuarioService {
     return this.http.post( `${ base_url }/usuarios`, registerForm );
   }
 
+  getUsuarios( desde: number ): Observable<GetUsuarios> {
+    const url = `${ base_url }/usuarios?desde=${ desde }`;
+    return this.http.get<GetUsuarios>( url, this.headers)
+      .pipe(
+        map( resp => {
+
+          const usuarios = resp.usuarios.map(
+            user => new Usuario(user.nombre, user.email, '', user.google, user.role, user.img, user.uid)
+          );
+
+          return {
+            total: resp.total,
+            usuarios
+          };
+
+        })
+      );
+  }
+
   actualizarDatosUsuario( data: { nombre: string, email: string, role: string } ): Observable<object>{
 
     data = {
@@ -87,12 +114,13 @@ export class UsuarioService {
       role : this.usuario.role
     };
 
-    return this.http.put( `${ base_url }/usuarios/${ this.uid }`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+    return this.http.put( `${ base_url }/usuarios/${ this.uid }`, data, this.headers );
 
+  }
+
+  deleteUsuario( usuario: Usuario ): Observable<object> {
+    const url = `${ base_url }/usuarios/${ usuario.uid }`;
+    return this.http.delete( url, this.headers );
   }
 
   login( loginForm: LoginForm ): Observable<object> {
@@ -111,6 +139,12 @@ export class UsuarioService {
       .pipe( tap( (resp: any) => {
         localStorage.setItem('token', resp.token);
       }));
+
+  }
+
+  actualizarRoleUsuario( usuario: Usuario ): Observable<object>{
+
+    return this.http.put( `${ base_url }/usuarios/${ usuario.uid }`, usuario, this.headers );
 
   }
 

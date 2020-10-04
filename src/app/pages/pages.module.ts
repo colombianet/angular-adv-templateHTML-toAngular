@@ -14,6 +14,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { AccountsSettingsComponent } from './accounts-settings/accounts-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 
@@ -28,7 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
     ProgressComponent,
     AccountsSettingsComponent,
     PromesasComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent
   ],
   exports: [
     Graficas1Component,

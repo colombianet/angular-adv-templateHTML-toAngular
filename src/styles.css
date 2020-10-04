@@ -12,7 +12,54 @@
     text-align: center;
 }
 
+.oculto {
+    display: none;
+}
+
+.fondo-modal-imagen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 .img-avatar {
     width: 200px;
     height: 200px;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.w130 {
+    width: 130px;
+}
+
+.w90 {
+    width: 90px;
+}
+
+.w80 {
+    width: 80px;
+}
+
+.w70 {
+    width: 70px;
+}
+
+.w50 {
+    width: 50px;
+}
+
+.w140 {
+    width: 140px;
+}
+
+.img-table {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
 }
