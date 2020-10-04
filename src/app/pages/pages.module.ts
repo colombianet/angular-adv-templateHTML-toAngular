@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 
+import { ImagenPipe } from '../pipes/imagen.pipe';
+
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
@@ -15,6 +17,7 @@ import { AccountsSettingsComponent } from './accounts-settings/accounts-settings
 import { PromesasComponent } from './promesas/promesas.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 
 
 
@@ -30,7 +33,9 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
     AccountsSettingsComponent,
     PromesasComponent,
     ProfileComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    HospitalesComponent,
+    ImagenPipe
   ],
   exports: [
     Graficas1Component,

@@ -1,0 +1,55 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="Buscar hospital">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Espero por favor...</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 animated fadeIn fast">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Hospitales</h4>
+            <h6 class="card-subtitle">Listado de hospitales</h6>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th class="text-nowrap">Herramientas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales">
+                            <td class="pointer img-table">
+                                <img src="{{ hospital.img | imagen:'hospitales'}}" alt="hospital.nombre">
+                            </td>
+                            <td>{{ hospital.nombre }}</td>
+                            <td class="text-nowrap">
+                                <a href="#" data-toggle="tooltip" data-original-title="Guardar cambios"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i class="fa fa-close text-danger"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div>
+                <button (click)="cambiarPagina(-5)" class="btn btn-outline-secondary mr-1">Anteriores</button>
+                <button (click)="cambiarPagina(5)" class="btn btn-outline-secondary">Siguientes</button>
+            </div> -->
+        </div>
+    </div>
+</div>

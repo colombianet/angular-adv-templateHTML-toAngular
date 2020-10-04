@@ -8,7 +8,7 @@ const base_url = environment.base_url;
 })
 export class ModalImagenService {
 
-  private _ocultarModal = true;
+  public _ocultarModal = true;
   public tipo;
   public img;
   public id;
